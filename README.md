@@ -2,15 +2,10 @@ Basefalconfork
 
 This is the repository for Team 7429's branch of the 364 baseflacon swerve. This branch includes modifications and customizations made by our team.
 
- _____                                                     
-/  __ \                                                    
-| /  \/ ___  _ ____   _____ _ __ __ _  __ _ _ __   ___ ___ 
-| |    / _ \| '_ \ \ / / _ \ '__/ _` |/ _` | '_ \ / __/ _ \                                                                                      
-| \__/\ (_) | | | \ V /  __/ | | (_| | (_| | | | | (_|  __/                                       
- \____/\___/|_| |_|\_/ \___|_|  \__, |\__,_|_| |_|\___\___|                                                     
-                                 __/ |                                                       
-                                |___/                                               
-                                                                                               
+ _______  _____  __   _ _    _ _______  ______  ______ _______ __   _ _______ _______
+ |       |     | | \  |  \  /  |______ |_____/ |  ____ |_____| | \  | |       |______
+ |_____  |_____| |  \_|   \/   |______ |    \_ |_____| |     | |  \_| |_____  |______
+                                                                                                                                      
 ------How to Commit and Merge Code-----
 
     Clone the repository to your local machine:
