@@ -4,9 +4,12 @@ This is the repository for Team 7429's branch of the 364 baseflacon swerve. This
 
 
 ( () |\| \/ [- /? (_, /\ |\| ( [- 
+
 01000011 01101111 01101110 01110110 01100101 01110010 01100111 01100001 01101110 01100011 01100101                               
+
 ------How to Commit and Merge Code-----
 
+clone
 
 git clone https://github.com/[your_username]/Basefalconfork.git
 
