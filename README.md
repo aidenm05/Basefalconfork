@@ -7,20 +7,19 @@ This is the repository for Team 7429's branch of the 364 baseflacon swerve. This
 
 01000011 01101111 01101110 01110110 01100101 01110010 01100111 01100001 01101110 01100011 01100101                               
 
-------How to Commit and Merge Code-----
+How to Commit and Merge Code
 
-clone
+    Clone the repository to your local machine:
+
 
 git clone https://github.com/[your_username]/Basefalconfork.git
 
     Checkout a new branch for your changes:
 
 
-
 git checkout -b [branch_name]
 
     Make changes to the code and add the files to the staging area:
-
 
 
 git add [file_name]
@@ -33,13 +32,13 @@ git commit -m "Your commit message"
     Push the changes to your remote branch:
 
 
-
 git push origin [branch_name]
 
     Go to the GitHub repository and create a pull request to merge your changes into the main branch.
 
     After your changes have been reviewed and approved, they will be merged into the main branch.
-    How to Upload Files
+
+How to Upload Files
 
     Navigate to the repository on the GitHub website.
 
