@@ -20,8 +20,8 @@ import frc.robot.subsystems.*;
  */
 public class RobotContainer {
     /* Controllers */
-    private final Joystick driver = new Joystick(0);
-    private final Joystick operator = new Joystick(1);
+    public final Joystick driver = new Joystick(0);
+    public final Joystick operator = new Joystick(1);
 
     /* Drive Controls */
     // private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -32,10 +32,13 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(operator, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     private final JoystickButton moveWheelsCenter = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+    private final JoystickButton armControl = new JoystickButton(driver, XboxController.Button.kX.value);
 
+  
+    
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-
+    // public Arm arm = new Arm();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -44,7 +47,7 @@ public class RobotContainer {
                 s_Swerve, 
                 () -> driver.getRawAxis(0), 
                 () -> driver.getRawAxis(1), 
-                () -> -operator.getRawAxis(4), 
+                () -> -driver.getRawAxis(3), 
                 () -> robotCentric.getAsBoolean()
             )
         );
