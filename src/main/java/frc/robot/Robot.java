@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -15,12 +19,17 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
+
+
+
+
   public static CTREConfigs ctreConfigs;
 
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
 
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -92,7 +101,96 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().cancelAll();
   }
 
+  public DigitalInput openLimitSwitch = new DigitalInput(1);
+  public DigitalInput closedLimitSwitch = new DigitalInput(0);
+  public CANSparkMax squeezeMotor = new CANSparkMax(23, MotorType.kBrushless);
+  public CANSparkMax leftintake = new CANSparkMax(15, MotorType.kBrushed);
+  public CANSparkMax rightIntake = new CANSparkMax(16, MotorType.kBrushed);
+
+  // public DigitalInput testLimit = new DigitalInput(2);
+
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    if(m_robotContainer.operator.getRawButtonPressed(1)){
+      System.out.println("open limit switch status: " + openLimitSwitch.get());
+    }
+
+    if(m_robotContainer.operator.getRawButtonPressed(2)){
+      System.out.println("closed limit switch status: " + closedLimitSwitch.get());
+    }
+
+    if(m_robotContainer.operator.getRawButton(3)){
+      System.out.println("button 3 being pressed");
+      leftintake.set(0.5);
+      rightIntake.set(0.5);
+    }
+    else {
+      leftintake.set(0);
+      rightIntake.set(0);
+    }
+
+    if(m_robotContainer.operator.getRawButton(4)){
+      System.out.println("button 4 being pressed");
+      leftintake.set(-0.5);
+      rightIntake.set(-0.5);
+    }
+    else {
+      leftintake.set(0);
+      rightIntake.set(0);
+    }
+    // System.out.println(m_robotContainer.arm.openLimitSwitch.get());
+    // while(!closedLimitSwitch.get()){
+    //   System.out.println("limit switch pressed");
+    // }
+    // System.out.println()
+    // System.out.println("openLimitSwitch: " + openLimitSwitch.get());
+    // System.out.println("closedLimitSwitch: " + closedLimitSwitch.get());
+    // System.out.println("------------ " + testLimit.get());
+
+    if (m_robotContainer.operator.getRawButton(1)){
+      if(!openLimitSwitch.get()) {
+        squeezeMotor.set(0);
+      } else {
+        squeezeMotor.set(.5);
+      }
+    }
+    else if (m_robotContainer.operator.getRawButton(2)){
+      if(!closedLimitSwitch.get()) {
+        squeezeMotor.set(0);
+      } else {
+        squeezeMotor.set(-.5);
+      }
+    }
+    else {
+      squeezeMotor.set(0);
+    }
+
+////// good code
+    // if (m_robotContainer.operator.getRawButton(1)){
+    //     squeezeMotor.set(.1);
+    // }
+    // else if (m_robotContainer.operator.getRawButton(2)){
+    //     squeezeMotor.set(-.1);
+    // }
+    // else {
+    //   squeezeMotor.set(0);
+    // }
+//////
+  }
 }
+
+
+
+
+  // if(!closedLimitSwitch.get()){
+  //   System.out.println("closed limit switch pressed");
+  // } else {
+  //   System.out.println("closed limit switch not pressed");
+  // }
+
+  // if(!openLimitSwitch.get()) {
+  //   System.out.println("open limit switch pressed");
+  // } else {
+  // System.out.println("open limit switch not pressed");
+  // }
