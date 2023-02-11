@@ -15,8 +15,8 @@ public class Arm extends SubsystemBase {
     public final CANSparkMax squeezeMotor;
     
     public Arm() {
-        // openLimitSwitch = new DigitalInput(1);
-        // closedLimitSwitch = new DigitalInput(0);
+         openLimitSwitch = new DigitalInput(1);
+         closedLimitSwitch = new DigitalInput(0);
         leftIntakeMotor = new CANSparkMax(16, MotorType.kBrushed);
         rightIntakeMotor = new CANSparkMax(15, MotorType.kBrushed);    
         squeezeMotor = new CANSparkMax(17, MotorType.kBrushless);
