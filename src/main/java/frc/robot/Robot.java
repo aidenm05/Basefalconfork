@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Arm;
 import frc.robot.Constants.Swerve.Mod0;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
   
 
 
+private TalonFX talon4 = new TalonFX(4);
 
 
 
@@ -118,7 +120,7 @@ public static CTREConfigs ctreConfigs;
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-   // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -134,12 +136,14 @@ public static CTREConfigs ctreConfigs;
   
   public void teleopInit() {
    //TalonFX talon = new TalonFX(2);
-  // TalonFX talon2 = new TalonFX(3);
+   TalonFX talon2 = new TalonFX(1);
   TalonFX talon = new TalonFX(2);
-    //TalonFX talon2 = new TalonFX(3);
- 
+    TalonFX talon3 = new TalonFX(5);
+
+    talon3.setInverted(true);
+
      talon.setInverted(true);
-   //   talon2.setInverted(true);
+      talon2.setInverted(true);
     arm.setElevatorPosition(0);
    //  talon.setInverted(true);
     // talon2.setInverted(true);
@@ -155,27 +159,36 @@ public static CTREConfigs ctreConfigs;
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    CommandScheduler.getInstance().run();
 
+    CommandScheduler.getInstance().run();
+if (m_robotContainer.operator.getRawButton(6)){
+     talon4.set(TalonFXControlMode.PercentOutput, .1);
+ }
+else if (m_robotContainer.operator.getRawButton(5)){
+  talon4.set(TalonFXControlMode.PercentOutput, -.1);
+}
+ else {
+  talon4.set(TalonFXControlMode.PercentOutput, 0);
+  
+ }
  
      // Move the elevator up or down based on joystick input
      // Move the elevator to preset positions based on button input
-     if (m_robotContainer.operator.getRawButtonPressed(2)) {
-       arm.setElevatorPosition(0);
-     } else if (m_robotContainer.operator.getRawButtonPressed(3)) {
-       arm.setElevatorPosition(1);
-     } else if (m_robotContainer.operator.getRawButtonPressed(4)) {
-       arm.setElevatorPosition(2);
-     }
+    //  if (m_robotContainer.operator.getRawButtonPressed(2)) {
+    //    arm.setElevatorPosition(0);
+    //  } else if (m_robotContainer.operator.getRawButtonPressed(3)) {
+    //    arm.setElevatorPosition(1);
+    //  } else if (m_robotContainer.operator.getRawButtonPressed(4)) {
+    //    arm.setElevatorPosition(2);
+    //  }
  
      // Run command scheduler to execute any active commands
 
-    if (m_robotContainer.operator.getRawButton(1)) {
-      System.out.println("Sensor Vel:" + m_robotContainer.arm.elevatorMotor.getSelectedSensorVelocity());
-      System.out.println("Sensor Pos:" + m_robotContainer.arm.elevatorMotor.getSelectedSensorPosition());
-      System.out.println("Out %" + m_robotContainer.arm.elevatorMotor.getMotorOutputPercent());
-    }
-  m_robotContainer.arm.setelevatorMotorSpeed(m_robotContainer.operator.getRawAxis(3));
+    // if (m_robotContainer.operator.getRawButton(1)) {
+    //   System.out.println("Sensor Vel:" + m_robotContainer.arm.elevatorMotor.getSelectedSensorVelocity());
+    //   System.out.println("Sensor Pos:" + m_robotContainer.arm.elevatorMotor.getSelectedSensorPosition());
+    //   System.out.println("Out %" + m_robotContainer.arm.elevatorMotor.getMotorOutputPercent());
+    // }
 }
   
   @Override
